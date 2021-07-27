@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color">#e3e1e3</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="shimmer">#24000000</color>
+    <color name="demo_light_transparent">#16000000</color>
+    <color name="darker_color">#B4B4B4</color>
+    <color name="default_color">#D7D7D7</color>
+    <declare-styleable name="ShimmerRecycler">
+        <attr name="layout" format="reference" />
+        <attr name="child" format="integer|reference" />
+        <attr name="layout_manager" format="enum">
+            <enum name="linear_vertical" value="0" />
+            <enum name="linear_horizontal" value="1" />
+            <enum name="grid" value="2" />
+        </attr>
+        <attr name="grid" format="integer|reference" />
+        <attr name="color" format="color|reference" />
+        <attr name="angle" format="integer|reference" />
+        <attr name="item_background" format="color|reference" />
+        <attr name="shimmer_duration" format="integer|reference" />
+        <attr name="mask_width" format="float|reference" />
+        <attr name="reverse_animation" format="boolean|reference" />
+        <attr name="emptyLayout" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="ShimmerImage">
+        <attr name="shimmerImageGradientColor" format="boolean|reference"/>
+        <attr name="shimmerImageCornerRadius" format="integer|reference"/>
+        <attr name="shimmerImageColor" format="color|reference"/>
+    </declare-styleable>
+    <declare-styleable name="ShimmerText">
+        <attr name="shimmerTextWidth" format="float|reference"/>
+        <attr name="shimmerTextHeight" format="float|reference"/>
+        <attr name="shimmerTextGradientColor" format="boolean|reference"/>
+        <attr name="shimmerTextCornerRadius" format="integer|reference"/>
+        <attr name="shimmerTextColor" format="color|reference"/>
+    </declare-styleable>
+</resources>

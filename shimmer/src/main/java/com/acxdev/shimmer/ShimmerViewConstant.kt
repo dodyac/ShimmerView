@@ -2,8 +2,7 @@ package com.acxdev.shimmer
 
 import android.graphics.Color
 
-object Constant {
-
+object ShimmerViewConstant {
     const val USE_GRADIENT_DEFAULT = false
     const val CORNER_DEFAULT = 16
     const val CHILD_COUNT_DEFAULT = 3

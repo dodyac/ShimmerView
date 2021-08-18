@@ -11,7 +11,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat.getColor
 import com.acxdev.shimmer.ShimmerController
 import com.acxdev.commonFunction.util.shimmer.ShimmerView
-import com.acxdev.shimmer.Constant
+import com.acxdev.shimmer.ShimmerViewConstant
 import com.acxdev.shimmer.R
 
 class ShimmerText : AppCompatTextView, ShimmerView {
@@ -29,10 +29,10 @@ class ShimmerText : AppCompatTextView, ShimmerView {
     private fun init(context: Context, attrs: AttributeSet?) {
         shimmerController = ShimmerController(this)
         val typedArray: TypedArray = context.obtainStyledAttributes(attrs, R.styleable.ShimmerText, 0, 0)
-        shimmerController!!.setWidthWeight(typedArray.getFloat(R.styleable.ShimmerText_shimmerTextWidth, Constant.MAX_WEIGHT))
-        shimmerController!!.setHeightWeight(typedArray.getFloat(R.styleable.ShimmerText_shimmerTextHeight, Constant.MAX_WEIGHT))
-        shimmerController!!.setUseGradient(typedArray.getBoolean(R.styleable.ShimmerText_shimmerTextGradientColor, Constant.USE_GRADIENT_DEFAULT))
-        shimmerController!!.setCorners(typedArray.getInt(R.styleable.ShimmerText_shimmerTextCornerRadius, Constant.CORNER_DEFAULT))
+        shimmerController!!.setWidthWeight(typedArray.getFloat(R.styleable.ShimmerText_shimmerTextWidth, ShimmerViewConstant.MAX_WEIGHT))
+        shimmerController!!.setHeightWeight(typedArray.getFloat(R.styleable.ShimmerText_shimmerTextHeight, ShimmerViewConstant.MAX_WEIGHT))
+        shimmerController!!.setUseGradient(typedArray.getBoolean(R.styleable.ShimmerText_shimmerTextGradientColor, ShimmerViewConstant.USE_GRADIENT_DEFAULT))
+        shimmerController!!.setCorners(typedArray.getInt(R.styleable.ShimmerText_shimmerTextCornerRadius, ShimmerViewConstant.CORNER_DEFAULT))
         defaultColorResource = typedArray.getColor(R.styleable.ShimmerText_shimmerTextColor, getColor(context, R.color.default_color))
         darkerColorResource = typedArray.getColor(R.styleable.ShimmerText_shimmerTextColor, getColor(context, R.color.darker_color))
         typedArray.recycle()

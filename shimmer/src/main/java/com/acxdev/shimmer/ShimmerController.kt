@@ -13,10 +13,10 @@ class ShimmerController(view: ShimmerView) : AnimatorUpdateListener {
     private var linearGradient: LinearGradient? = null
     private var progress = 0f
     private var valueAnimator: ValueAnimator? = null
-    private var widthWeight = Constant.MAX_WEIGHT
-    private var heightWeight = Constant.MAX_WEIGHT
-    private var useGradient = Constant.USE_GRADIENT_DEFAULT
-    private var corners = Constant.CORNER_DEFAULT
+    private var widthWeight = ShimmerViewConstant.MAX_WEIGHT
+    private var heightWeight = ShimmerViewConstant.MAX_WEIGHT
+    private var useGradient = ShimmerViewConstant.USE_GRADIENT_DEFAULT
+    private var corners = ShimmerViewConstant.CORNER_DEFAULT
     private val maxColorConstantValue = 255
     private val animationCycleDuration = 750
 
@@ -46,7 +46,7 @@ class ShimmerController(view: ShimmerView) : AnimatorUpdateListener {
 
     private fun prepareGradient(width: Float) {
         if (linearGradient == null) linearGradient = LinearGradient(0F, 0F, width, 0F,
-            rectPaint!!.color, Constant.COLOR_DEFAULT_GRADIENT, Shader.TileMode.MIRROR)
+            rectPaint!!.color, ShimmerViewConstant.COLOR_DEFAULT_GRADIENT, Shader.TileMode.MIRROR)
         rectPaint!!.shader = linearGradient
     }
 
@@ -67,7 +67,7 @@ class ShimmerController(view: ShimmerView) : AnimatorUpdateListener {
     fun setCorners(corners: Int) { this.corners = corners }
 
     private fun validateWeight(weight: Float): Float {
-        return if (weight > Constant.MAX_WEIGHT) Constant.MAX_WEIGHT else weight.coerceAtLeast(Constant.MIN_WEIGHT)
+        return if (weight > ShimmerViewConstant.MAX_WEIGHT) ShimmerViewConstant.MAX_WEIGHT else weight.coerceAtLeast(ShimmerViewConstant.MIN_WEIGHT)
     }
 
     fun stopLoading() {

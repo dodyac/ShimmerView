@@ -9,16 +9,19 @@ import android.text.TextUtils
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat.getColor
-import com.acxdev.shimmer.ShimmerController
 import com.acxdev.commonFunction.util.shimmer.ShimmerView
-import com.acxdev.shimmer.ShimmerViewConstant
 import com.acxdev.shimmer.R
+import com.acxdev.shimmer.ShimmerController
+import com.acxdev.shimmer.ShimmerViewConstant
+
 
 class ShimmerText : AppCompatTextView, ShimmerView {
 
     private var shimmerController: ShimmerController? = null
     private var defaultColorResource = 0
     private var darkerColorResource = 0
+    private val NO_PLACEHOLDER = -1
+    private var placeholderText: String? = null
 
     constructor(context: Context) : super(context) { init(context, null) }
 
@@ -28,7 +31,7 @@ class ShimmerText : AppCompatTextView, ShimmerView {
 
     private fun init(context: Context, attrs: AttributeSet?) {
         shimmerController = ShimmerController(this)
-        val typedArray: TypedArray = context.obtainStyledAttributes(attrs, R.styleable.ShimmerText, 0, 0)
+        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.ShimmerText, 0, 0)
         shimmerController!!.setWidthWeight(typedArray.getFloat(R.styleable.ShimmerText_shimmerTextWidth, ShimmerViewConstant.MAX_WEIGHT))
         shimmerController!!.setHeightWeight(typedArray.getFloat(R.styleable.ShimmerText_shimmerTextHeight, ShimmerViewConstant.MAX_WEIGHT))
         shimmerController!!.setUseGradient(typedArray.getBoolean(R.styleable.ShimmerText_shimmerTextGradientColor, ShimmerViewConstant.USE_GRADIENT_DEFAULT))
@@ -37,6 +40,7 @@ class ShimmerText : AppCompatTextView, ShimmerView {
         darkerColorResource = typedArray.getColor(R.styleable.ShimmerText_shimmerTextColor, getColor(context, R.color.darker_color))
         typedArray.recycle()
         showShimmer()
+        checkPlaceholderAttributes(typedArray)
     }
 
     override fun onSizeChanged(width: Int, height: Int, oldWidth: Int, oldHeight: Int) {
@@ -77,5 +81,33 @@ class ShimmerText : AppCompatTextView, ShimmerView {
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
         shimmerController!!.removeAnimatorUpdateListener()
+    }
+
+    private fun checkPlaceholderAttributes(typedArray: TypedArray) {
+        val placeholderTextRes = typedArray.getResourceId(R.styleable.ShimmerText_shimmerTextPlaceholder_resource, NO_PLACEHOLDER)
+        val stringArgument = typedArray.getNonResourceString(R.styleable.ShimmerText_shimmerTextPlaceholder_string_argument)
+        if (placeholderTextRes != NO_PLACEHOLDER) {
+            var argument: Any? = null
+            if (stringArgument != null) {
+                argument = stringArgument
+            }
+            placeholderText = resources.getString(placeholderTextRes, argument)
+            measurePlaceholderTextAndSetMinWidth()
+        }
+        typedArray.recycle()
+    }
+
+    private fun measurePlaceholderTextAndSetMinWidth() {
+        if (placeholderText == null) {
+            minimumWidth = 0
+            return
+        }
+        val measuredWidth = paint.measureText(placeholderText)
+        minimumWidth = measuredWidth.toInt()
+    }
+
+    fun setPlaceholderText(text: String) {
+        placeholderText = text
+        measurePlaceholderTextAndSetMinWidth()
     }
 }

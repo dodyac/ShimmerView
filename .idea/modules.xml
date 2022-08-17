@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ShimmerView.iml" filepath="$PROJECT_DIR$/.idea/modules/ShimmerView.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ShimmerView.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ShimmerView.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/shimmer/ShimmerView.shimmer.iml" filepath="$PROJECT_DIR$/.idea/modules/shimmer/ShimmerView.shimmer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ShimmerView.iml" filepath="$PROJECT_DIR$/.idea/ShimmerView.iml" />
     </modules>
   </component>
 </project>

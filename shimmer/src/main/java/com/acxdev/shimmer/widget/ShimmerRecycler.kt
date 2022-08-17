@@ -42,8 +42,8 @@ class ShimmerRecycler : RecyclerView {
         mShimmerAdapter = ShimmerAdapter()
         val a = context.obtainStyledAttributes(attrs, R.styleable.ShimmerRecycler, 0, 0)
         try {
-            layoutReference(a.getResourceId(R.styleable.ShimmerRecycler_layout, R.layout.layout_shimmer))
-            childCount = a.getInteger(R.styleable.ShimmerRecycler_child, ShimmerViewConstant.CHILD_COUNT_DEFAULT)
+            layoutReference(a.getResourceId(R.styleable.ShimmerRecycler_shimmerRecyclerLayout, R.layout.layout_shimmer))
+            childCount = a.getInteger(R.styleable.ShimmerRecycler_shimmerRecyclerCount, ShimmerViewConstant.CHILD_COUNT_DEFAULT)
             setGridChildCount(a.getInteger(R.styleable.ShimmerRecycler_grid, 2))
             when (a.getInteger(R.styleable.ShimmerRecycler_layout_manager, 0)) {
                 0 -> layoutManager(LayoutMangerType.LINEAR_VERTICAL)

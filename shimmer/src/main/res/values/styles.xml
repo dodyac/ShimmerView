@@ -8,8 +8,8 @@
     <color name="darker_color">#B4B4B4</color>
     <color name="default_color">#D7D7D7</color>
     <declare-styleable name="ShimmerRecycler">
-        <attr name="layout" format="reference" />
-        <attr name="child" format="integer|reference" />
+        <attr name="shimmerRecyclerLayout" format="reference" />
+        <attr name="shimmerRecyclerCount" format="integer|reference" />
         <attr name="layout_manager" format="enum">
             <enum name="linear_vertical" value="0" />
             <enum name="linear_horizontal" value="1" />
@@ -35,5 +35,7 @@
         <attr name="shimmerTextGradientColor" format="boolean|reference"/>
         <attr name="shimmerTextCornerRadius" format="integer|reference"/>
         <attr name="shimmerTextColor" format="color|reference"/>
+        <attr name="shimmerTextPlaceholder_resource" format="reference"/>
+        <attr name="shimmerTextPlaceholder_string_argument" format="string" />
     </declare-styleable>
 </resources>

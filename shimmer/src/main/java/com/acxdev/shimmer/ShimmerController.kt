@@ -5,10 +5,9 @@ import android.animation.ValueAnimator
 import android.animation.ValueAnimator.AnimatorUpdateListener
 import android.graphics.*
 import android.view.animation.LinearInterpolator
-import com.acxdev.commonFunction.util.shimmer.ShimmerView
 
-class ShimmerController(view: ShimmerView) : AnimatorUpdateListener {
-    private var shimmerView: ShimmerView? = view
+class ShimmerController(view: ShimmerListener) : AnimatorUpdateListener {
+    private var shimmerView: ShimmerListener? = view
     private var rectPaint: Paint? = null
     private var linearGradient: LinearGradient? = null
     private var progress = 0f
@@ -32,11 +31,13 @@ class ShimmerController(view: ShimmerView) : AnimatorUpdateListener {
 
     fun onDraw(canvas: Canvas, left_pad: Float, top_pad: Float, right_pad: Float, bottom_pad: Float) {
         val marginHeight = canvas.height * (1 - heightWeight) / 2
-        rectPaint!!.alpha = (progress * maxColorConstantValue).toInt()
-        if (useGradient) prepareGradient(canvas.width * widthWeight)
-        canvas.drawRoundRect(RectF(0 + left_pad, marginHeight + top_pad,
-            canvas.width * widthWeight - right_pad, canvas.height - marginHeight - bottom_pad),
-            corners.toFloat(), corners.toFloat(), rectPaint!!)
+        rectPaint?.let {
+            it.alpha = (progress * maxColorConstantValue).toInt()
+            if (useGradient) prepareGradient(canvas.width * widthWeight)
+            canvas.drawRoundRect(RectF(0 + left_pad, marginHeight + top_pad,
+                canvas.width * widthWeight - right_pad, canvas.height - marginHeight - bottom_pad),
+                corners.toFloat(), corners.toFloat(), it)
+        }
     }
 
     fun onSizeChanged() {

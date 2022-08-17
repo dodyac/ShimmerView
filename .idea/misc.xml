@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Dody/Documents/GitHub/ShimmerView/app/src/main/res/layout/activity_main.xml" value="0.9" />
         <entry key="..\:/Users/Dody/Documents/GitHub/ShimmerView/shimmer/src/main/res/layout/layout_shimmer.xml" value="0.34479166666666666" />
       </map>
     </option>
@@ -13,5 +14,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.67" />
+      </ProjectState>
+    </option>
   </component>
 </project>

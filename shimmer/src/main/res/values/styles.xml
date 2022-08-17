@@ -35,7 +35,5 @@
         <attr name="shimmerTextGradientColor" format="boolean|reference"/>
         <attr name="shimmerTextCornerRadius" format="integer|reference"/>
         <attr name="shimmerTextColor" format="color|reference"/>
-        <attr name="shimmerTextPlaceholder_resource" format="reference"/>
-        <attr name="shimmerTextPlaceholder_string_argument" format="string" />
     </declare-styleable>
 </resources>

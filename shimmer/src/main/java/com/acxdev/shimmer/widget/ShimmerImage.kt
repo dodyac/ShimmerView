@@ -10,11 +10,11 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat.getColor
 import com.acxdev.shimmer.ShimmerController
-import com.acxdev.commonFunction.util.shimmer.ShimmerView
+import com.acxdev.shimmer.ShimmerListener
 import com.acxdev.shimmer.ShimmerViewConstant
 import com.acxdev.shimmer.R
 
-class ShimmerImage : AppCompatImageView, ShimmerView {
+class ShimmerImage : AppCompatImageView, ShimmerListener {
 
     private var shimmerController: ShimmerController? = null
     private var defaultColorResource = 0
@@ -28,8 +28,10 @@ class ShimmerImage : AppCompatImageView, ShimmerView {
     private fun init(context: Context, attrs: AttributeSet?) {
         shimmerController = ShimmerController(this)
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.ShimmerImage, 0, 0)
-        shimmerController!!.setUseGradient(typedArray.getBoolean(R.styleable.ShimmerImage_shimmerImageGradientColor, ShimmerViewConstant.USE_GRADIENT_DEFAULT))
-        shimmerController!!.setCorners(typedArray.getInt(R.styleable.ShimmerImage_shimmerImageCornerRadius, ShimmerViewConstant.CORNER_DEFAULT))
+        shimmerController?.let {
+            it.setUseGradient(typedArray.getBoolean(R.styleable.ShimmerImage_shimmerImageGradientColor, ShimmerViewConstant.USE_GRADIENT_DEFAULT))
+            it.setCorners(typedArray.getInt(R.styleable.ShimmerImage_shimmerImageCornerRadius, ShimmerViewConstant.CORNER_DEFAULT))
+        }
         defaultColorResource = typedArray.getColor(R.styleable.ShimmerImage_shimmerImageColor, getColor(context, R.color.default_color))
         typedArray.recycle()
         showShimmer()
@@ -38,18 +40,18 @@ class ShimmerImage : AppCompatImageView, ShimmerView {
     fun showShimmer() {
         if (drawable != null) {
             super.setImageDrawable(null)
-            shimmerController!!.startLoading()
+            shimmerController?.startLoading()
         }
     }
 
     override fun onSizeChanged(width: Int, height: Int, oldWidth: Int, oldHeight: Int) {
         super.onSizeChanged(width, height, oldWidth, oldHeight)
-        shimmerController!!.onSizeChanged()
+        shimmerController?.onSizeChanged()
     }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        shimmerController!!.onDraw(canvas)
+        shimmerController?.onDraw(canvas)
     }
 
     override fun setRectColor(rectPaint: Paint?) { rectPaint?.color = defaultColorResource }
@@ -58,26 +60,26 @@ class ShimmerImage : AppCompatImageView, ShimmerView {
 
     override fun setImageBitmap(bm: Bitmap?) {
         super.setImageBitmap(bm)
-        shimmerController!!.stopLoading()
+        shimmerController?.stopLoading()
     }
 
     override fun setImageDrawable(drawable: Drawable?) {
         super.setImageDrawable(drawable)
-        shimmerController!!.stopLoading()
+        shimmerController?.stopLoading()
     }
 
     override fun setImageIcon(icon: Icon?) {
         super.setImageIcon(icon)
-        shimmerController!!.stopLoading()
+        shimmerController?.stopLoading()
     }
 
     override fun setImageResource(resId: Int) {
         super.setImageResource(resId)
-        shimmerController!!.stopLoading()
+        shimmerController?.stopLoading()
     }
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
-        shimmerController!!.removeAnimatorUpdateListener()
+        shimmerController?.removeAnimatorUpdateListener()
     }
 }

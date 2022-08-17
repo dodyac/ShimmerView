@@ -1,8 +1,8 @@
-package com.acxdev.commonFunction.util.shimmer
+package com.acxdev.shimmer
 
 import android.graphics.Paint
 
-interface ShimmerView {
+interface ShimmerListener {
     fun setRectColor(rectPaint: Paint?)
 
     fun invalidate()

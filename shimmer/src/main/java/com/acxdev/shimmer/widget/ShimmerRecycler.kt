@@ -62,28 +62,30 @@ class ShimmerRecycler : RecyclerView {
     }
 
     private fun setupShimmerProperties() {
-        mShimmerAdapter!!.setShimmerAngle(mShimmerAngle)
-        mShimmerAdapter!!.setShimmerColor(mShimmerColor)
-        mShimmerAdapter!!.setShimmerMaskWidth(mShimmerMaskWidth)
-        mShimmerAdapter!!.setShimmerItemBackground(mShimmerItemBackground)
-        mShimmerAdapter!!.setShimmerDuration(mShimmerDuration)
-        mShimmerAdapter!!.setAnimationReversed(isAnimationReversed)
+        mShimmerAdapter?.let {
+            it.setShimmerAngle(mShimmerAngle)
+            it.setShimmerColor(mShimmerColor)
+            it.setShimmerMaskWidth(mShimmerMaskWidth)
+            it.setShimmerItemBackground(mShimmerItemBackground)
+            it.setShimmerDuration(mShimmerDuration)
+            it.setAnimationReversed(isAnimationReversed)
+        }
         showShimmer()
     }
 
     fun setBindViewHolderPlugin(plugin: BindViewHolderPlugin?) {
-        mShimmerAdapter!!.setBindViewHolderPlugin(plugin)
+        mShimmerAdapter?.setBindViewHolderPlugin(plugin)
     }
 
     fun setGridChildCount(count: Int) { mGridCount = count }
 
     fun layoutManager(type: LayoutMangerType?) { mLayoutMangerType = type }
 
-    fun setChildCount(count: Int) { mShimmerAdapter!!.setMinItemCount(count) }
+    fun setChildCount(count: Int) { mShimmerAdapter?.setMinItemCount(count) }
 
-    fun duration(duration: Int) { mShimmerAdapter!!.setShimmerDuration(duration) }
+    fun duration(duration: Int) { mShimmerAdapter?.setShimmerDuration(duration) }
 
-    fun maskWidth(maskWidth: Float) { mShimmerAdapter!!.setShimmerMaskWidth(maskWidth) }
+    fun maskWidth(maskWidth: Float) { mShimmerAdapter?.setShimmerMaskWidth(maskWidth) }
 
     fun showShimmer() {
         mCanScroll = false
@@ -118,7 +120,7 @@ class ShimmerRecycler : RecyclerView {
 
     fun layoutReference(mLayoutReference: Int) {
         this.mLayoutReference = mLayoutReference
-        mShimmerAdapter!!.setLayoutReference(getLayoutReference())
+        mShimmerAdapter?.setLayoutReference(getLayoutReference())
     }
 
     private fun initShimmerManager() {
